@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Alumnos>
+@{
+    ViewData["Title"] = "Alumnos";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <style>
+        .titulo-lista-alumnos {
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .contenedor-imagen {
+            text-align: center;
+        }
+
+        .imagen-centrada {
+            width: 100px;
+            height: auto;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+
+            .styled-table th, .styled-table td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+
+            .styled-table th {
+                background-color: #f2f2f2;
+                color: #333;
+            }
+
+            .styled-table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .styled-table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .styled-table a {
+                text-decoration: none;
+                color: #2a6496;
+            }
+
+                .styled-table a:hover {
+                    color: #555;
+                }
+
+        .filter-form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .filter-form > div {
+                display: flex;
+                align-items: center;
+                flex: 1;
+                margin-right: 10px;
+            }
+
+                .filter-form > div:last-child {
+                    margin-right: 0;
+                }
+
+            .filter-form label {
+                margin-right: 10px;
+            }
+
+            .filter-form input {
+                width: calc(70% - 10px);
+                box-sizing: border-box;
+            }
+
+            .filter-form button {
+                width: 30%;
+                box-sizing: border-box;
+            }
+
+        .btn-nuevo-alumno {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <a asp-controller="Alumnos" asp-action="Nuevo" class="btn btn-primary btn-nuevo-alumno">
+        Nuevo Alumno
+    </a>
+
+    <br />
+
+    <h2 class="titulo-lista-alumnos">Lista de Alumnos</h2>
+
+    <div class="contenedor-imagen">
+        <img src="https://cdn-icons-png.flaticon.com/512/2620/2620389.png" alt="Descripción de la imagen" class="imagen-centrada">
+    </div>
+
+    <form method="get" asp-action="Index" class="filter-form">
+        <div>
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" name="nombres" />
+        </div>
+        <div>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" />
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Consultar</button>
+        </div>
+    </form>
+
+    <table class="table styled-table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Dirección</th>
+                <th>Sexo</th>
+                <th>FechaNacimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Alumnos" asp-action="Editar" asp-route-id="@item.AlumnoID">
+                            @item.AlumnoID
+                        </a>
+                    </td>
+                    <td>@item.Nombres</td>
+                    <td>@item.Apellidos</td>
+                    <td>@item.Direccion</td>
+                    <td>@item.Sexo</td>
+                    <td>@item.FechaNacimiento</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>

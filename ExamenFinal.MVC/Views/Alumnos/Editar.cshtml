@@ -1,0 +1,35 @@
+﻿@model Alumnos
+
+<div class="container mt-5">
+    <form class="row g-3 justify-content-center" action="~/alumnos/editar" method="post">
+        <div class="col-md-10">
+            <label for="txtAlumnoID" class="form-label">ID Alumno</label>
+            <input type="text" class="form-control" id="txtAlumnoID" name="AlumnoID" value="@Model.AlumnoID">
+        </div>
+        <div class="col-md-10">
+            <label for="txtNombres" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="txtNombres" name="Nombres" value="@Model.Nombres">
+        </div>
+        <div class="col-md-10">
+            <label for="txtApellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="txtApellidos" name="Apellidos" value="@Model.Apellidos">
+        </div>
+        <div class="col-md-10">
+            <label for="txtDireccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="txtDireccion" name="Direccion" value="@Model.Direccion">
+        </div>
+        <div class="col-md-10">
+            <label for="txtSexo" class="form-label">Sexo</label>
+            <input type="text" class="form-control" id="txtSexo" name="Sexo" value="@Model.Sexo">
+        </div>
+        <div class="col-md-10">
+            <label for="txtFechaNac" class="form-label">Fecha Nacimiento</label>
+            <input type="text" class="form-control" id="txtFechaNac" name="FechaNacimiento" value="@Model.FechaNacimiento">
+        </div>
+
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="@Url.Action("Atras", "Alumnos")" class="btn btn-success">Atrás</a>
+        </div>
+    </form>
+</div>
